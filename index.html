@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Russo+One&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Tilt+Neon&display=swap">
 <style>
 /* 構成: Yunth BF ピンク版と同じ形(黒地ネオン看板→FV→クーポンブロック→両脇レール/下部タブ)。
    色はクーポンバナーの黒×金。ネオン管は BLACK=白、FRIDAY=金 */
@@ -48,6 +48,9 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
 .lit-1{animation:lit 1.5s steps(1,end) both}
 .lit-2{animation:lit 1.5s steps(1,end) .32s both}
 .lit-3{animation:lit 1.1s steps(1,end) .7s both}
+/* 灯ったあと、電気の線と稲妻だけがときどき瞬く */
+.spark{animation:lit 1.1s steps(1,end) .7s both,zap 5s steps(1,end) 2.4s infinite}
+@keyframes zap{0%,88%,100%{opacity:1}90%{opacity:.35}92%{opacity:1}94%{opacity:.5}96%{opacity:1}}
 @keyframes lit{0%{opacity:.18}12%{opacity:1}18%{opacity:.25}34%{opacity:1}40%{opacity:.35}52%{opacity:.9}58%{opacity:.3}70%,100%{opacity:1}}
 
 /* ── FV: 金の光の帯と4アイテム ─────── */
@@ -57,7 +60,9 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
 .glitter{position:absolute;inset:0;pointer-events:none}
 .glitter i{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--gold-hi);box-shadow:0 0 8px 2px rgba(255,214,110,.7);animation:tw 3.2s ease-in-out infinite}
 @keyframes tw{0%,100%{opacity:.15;transform:scale(.6)}50%{opacity:1;transform:scale(1)}}
-.period{display:inline-block;margin:0;padding:8px 22px 9px;border:1px solid var(--gold);border-radius:999px;color:var(--gold-hi);font-size:clamp(14px,3.9vw,17px);letter-spacing:.1em;line-height:1.5}
+.period{display:inline-flex;align-items:baseline;justify-content:center;gap:clamp(6px,2vw,12px);margin:0;padding:8px clamp(18px,5vw,28px) 10px;border:1px solid var(--gold);border-radius:999px;color:var(--white);font-size:clamp(13px,3.6vw,17px);letter-spacing:.06em;line-height:1.3;white-space:nowrap}
+.period b{font:500 clamp(22px,6.2vw,32px)/1 var(--num);letter-spacing:.02em;color:var(--gold-hi);margin-right:2px}
+.period i{font-style:normal;color:var(--gold)}
 .fv h1{display:flex;justify-content:center;align-items:center;gap:clamp(8px,2.4vw,18px);margin:clamp(14px,3.6vw,24px) 0 0;font-weight:700;line-height:1.25}
 .fv-num{font:700 min(44vw,290px)/.8 var(--num);letter-spacing:-.02em;color:var(--gold);background:var(--g-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;padding-bottom:.04em}
 .fv-h{display:grid;text-align:left;font-size:min(10.4vw,68px);letter-spacing:.06em}
@@ -72,8 +77,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
 /* ── クーポンブロック ─────── */
 .deal{position:relative;overflow:hidden;padding:64px var(--gut-r) 60px var(--gut-l);text-align:center;background:var(--void);border-top:1px solid var(--line)}
 .deal:nth-of-type(even){background:var(--void2)}
-.deal-no{margin:0;font:500 clamp(15px,4vw,18px)/1 var(--num);letter-spacing:.3em;color:var(--gold)}
-.deal-notice{display:inline-block;margin:14px 0 0;padding:4px 18px 6px;border:2px solid var(--gold);color:var(--gold);font-size:clamp(17px,4.8vw,22px);font-weight:500;letter-spacing:.1em;line-height:1.5}
+.deal-notice{display:inline-block;margin:0;padding:4px 18px 6px;border:2px solid var(--gold);color:var(--gold);font-size:clamp(17px,4.8vw,22px);font-weight:500;letter-spacing:.1em;line-height:1.5}
 .deal-title{margin:18px 0 0;font:700 min(13.4vw,84px)/1 var(--num);letter-spacing:.02em;color:#fff}
 .deal-title .nw{white-space:nowrap}
 .deal-title.is-long{font-size:min(11vw,70px);line-height:1.05}
@@ -128,13 +132,16 @@ footer .law{font-size:13px;color:var(--mute)}
   .rail-l{left:0}
   .rail-r{right:0}
   .rail-logo{width:min(56%,170px)}
-  .rail-sign{display:grid;margin:18px 0 0;font:700 clamp(40px,3.8vw,70px)/.95 var(--num);text-align:center;letter-spacing:.01em}
+  .rail-sign{display:grid;margin:18px 0 0;font:400 clamp(44px,4vw,74px)/1 'Tilt Neon',sans-serif;text-align:center;letter-spacing:.01em}
   .rail-sign span:last-child{color:var(--gold);background:var(--g-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .rail-tag{display:grid;justify-items:center;gap:2px;width:100%;max-width:330px;margin-top:28px;padding:16px 14px 18px;border:2px solid var(--gold);border-radius:14px;color:var(--white);text-decoration:none;text-align:center;transition:transform .2s}
-  .rail-tag:hover{transform:translateY(-3px)}
-  .rail-tag small{font-size:14px;letter-spacing:.08em;color:var(--gold-hi)}
-  .rail-tag span{display:flex;align-items:baseline;gap:6px;font-size:20px;font-weight:500}
-  .rail-tag b{font:700 clamp(50px,4vw,72px)/1 var(--num);color:var(--gold)}
+  .rail-period{margin:16px 0 0;font-size:15px;letter-spacing:.06em;text-align:center;line-height:1.6}
+  .rail-period b{font:500 22px/1 var(--num);color:var(--gold-hi);letter-spacing:.02em}
+  .countdown{width:100%;max-width:330px;margin-top:24px;padding:16px 12px 18px;border:2px solid var(--gold);border-radius:14px;text-align:center}
+  .countdown small{font-size:14px;letter-spacing:.12em;color:var(--gold-hi)}
+  .countdown p{display:flex;justify-content:center;align-items:baseline;gap:2px;margin:6px 0 0;white-space:nowrap;font-size:14px}
+  .countdown b{font:600 clamp(30px,2.6vw,44px)/1 var(--num);letter-spacing:.02em;color:var(--gold);font-variant-numeric:tabular-nums}
+  .countdown span{margin:0 4px 0 1px}
+  .countdown.is-end p{font-size:18px;font-weight:500}
   .rail-title{margin:0 0 14px;font-size:19px;font-weight:500;letter-spacing:.1em}
   .rail-nav{list-style:none;margin:0;padding:0;width:100%;max-width:330px;display:grid;gap:8px}
   .rail-nav a{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border:1px solid rgba(232,178,46,.5);border-radius:10px;background:#14110c;color:var(--white);text-decoration:none;font-size:15px;line-height:1.4;transition:background .2s,color .2s,transform .2s}
@@ -158,49 +165,43 @@ footer .law{font-size:13px;color:var(--mute)}
 
 <!-- ▼ 黒地のネオン看板 -->
 <div class="neon-top">
-  <svg class="neon-sign" viewBox="0 0 800 500" role="img" aria-label="Brighte BLACK FRIDAY">
+  <svg class="neon-sign" viewBox="0 0 800 520" role="img" aria-label="Brighte BLACK FRIDAY">
     <defs>
-      <text id="t-black" font-family="'Russo One',sans-serif" font-size="150" x="400" y="256" text-anchor="middle" textLength="600" lengthAdjust="spacingAndGlyphs" transform="skewX(-7) translate(30 0)">BLACK</text>
-      <text id="t-friday" font-family="'Russo One',sans-serif" font-size="150" x="400" y="416" text-anchor="middle" textLength="660" lengthAdjust="spacingAndGlyphs" transform="skewX(-7) translate(50 0)">FRIDAY</text>
-      <path id="p-top" d="M58 214C44 138 128 124 190 104 268 78 300 26 400 26s132 52 210 78c62 20 146 34 132 110"/>
-      <path id="p-low" d="M28 300c-6 90 14 152 42 188M772 300c6 90-14 152-42 188"/>
-      <!-- ELEKI(電気)にちなんだ稲妻と、バナーのきらめき -->
-      <g id="i-bolt"><path d="M8-32L-16 4h14L-8 32 16-4H2z"/></g>
-      <g id="i-star"><path d="M0-22L5-5 22 0 5 5 0 22-5 5-22 0-5-5z"/></g>
+      <text id="t-black" font-family="'Tilt Neon',sans-serif" font-size="168" x="400" y="252" text-anchor="middle" textLength="560" lengthAdjust="spacingAndGlyphs">BLACK</text>
+      <text id="t-friday" font-family="'Tilt Neon',sans-serif" font-size="168" x="400" y="446" text-anchor="middle" textLength="612" lengthAdjust="spacingAndGlyphs">FRIDAY</text>
+      <!-- 角丸の枠。上の中央はロゴのために切ってある -->
+      <path id="p-frame" d="M318 40H84a44 44 0 0 0-44 44v352a44 44 0 0 0 44 44h632a44 44 0 0 0 44-44V84a44 44 0 0 0-44-44H482"/>
+      <!-- BLACKとFRIDAYの間を走る電気。ELEKIの稲妻 -->
+      <path id="p-wire" d="M96 288H360M440 288H704"/>
+      <path id="p-bolt" d="M410 252L382 290h22l-12 32 30-42h-22z"/>
     </defs>
 
-    <g class="lit-3" fill="none" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
-      <g class="gl-b" opacity=".7"><use href="#i-bolt" x="712" y="56" stroke="#ffcf5a"/><use href="#i-star" x="742" y="404" stroke="#ffcf5a"/><use href="#i-star" x="92" y="66" stroke="#ffcf5a"/></g>
-      <use href="#i-bolt" x="712" y="56" stroke="#fff1c8"/><use href="#i-star" x="742" y="404" stroke="#fff1c8"/><use href="#i-star" x="92" y="66" stroke="#fff1c8"/>
-      <use href="#i-star" x="150" y="36" stroke="#ffd98a" transform="translate(150 36) scale(.5) translate(-150 -36)"/>
-      <use href="#i-star" x="58" y="416" stroke="#ffd98a" transform="translate(58 416) scale(.6) translate(-58 -416)"/>
+    <g class="lit-2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#p-frame" stroke="#e8a20f" stroke-width="9" class="gl-a"/>
+      <use href="#p-frame" stroke="#ffc53d" stroke-width="4" class="gl-b"/>
+      <use href="#p-frame" stroke="#fff0c4" stroke-width="2.2"/>
     </g>
 
-    <!-- 枠の管 -->
-    <g class="lit-2" fill="none" stroke-linecap="round">
-      <use href="#p-top" stroke="#ffcf5a" stroke-width="8" class="gl-a"/>
-      <use href="#p-top" stroke="#ffcf5a" stroke-width="4" class="gl-b"/>
-      <use href="#p-top" stroke="#fff4d6" stroke-width="2.2"/>
-      <use href="#p-low" stroke="#e8a20f" stroke-width="8" class="gl-a"/>
-      <use href="#p-low" stroke="#e8a20f" stroke-width="4" class="gl-b"/>
-      <use href="#p-low" stroke="#ffeab0" stroke-width="2.2"/>
+    <image href="images/logo-w.png" x="330" y="23" width="140" height="30"/>
+
+    <g class="lit-1">
+      <use href="#t-black" fill="#ffffff" class="gl-a"/>
+      <use href="#t-black" fill="#ffffff" class="gl-b" opacity=".7"/>
+      <use href="#t-black" fill="#fffdf6"/>
     </g>
 
-    <image href="images/logo-w.png" x="320" y="60" width="160" height="34"/>
-
-    <!-- BLACK は白い管 -->
-    <g class="lit-1" fill="none" stroke-linejoin="round">
-      <use href="#t-black" x="6" y="6" stroke="#5c5444" stroke-width="1.4"/>
-      <use href="#t-black" stroke="#ffffff" stroke-width="6" class="gl-a"/>
-      <use href="#t-black" stroke="#ffffff" stroke-width="3" class="gl-b" opacity=".6"/>
-      <use href="#t-black" stroke="#ffffff" stroke-width="2.4"/>
+    <g class="lit-3 spark" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#p-wire" stroke="#ffc53d" stroke-width="6" class="gl-a"/>
+      <use href="#p-wire" stroke="#fff0c4" stroke-width="2"/>
+      <use href="#p-bolt" stroke="#ffc53d" stroke-width="8" class="gl-a"/>
+      <use href="#p-bolt" stroke="#ffd56a" stroke-width="4" class="gl-b"/>
+      <use href="#p-bolt" stroke="#fff6d8" stroke-width="2.4"/>
     </g>
-    <!-- FRIDAY は金の管 -->
-    <g class="lit-2" fill="none" stroke-linejoin="round">
-      <use href="#t-friday" x="6" y="6" stroke="#6e4c0c" stroke-width="1.4"/>
-      <use href="#t-friday" stroke="#f0aa12" stroke-width="11" class="gl-a"/>
-      <use href="#t-friday" stroke="#ffc53d" stroke-width="5" class="gl-b"/>
-      <use href="#t-friday" stroke="#fff3cc" stroke-width="2.4"/>
+
+    <g class="lit-2">
+      <use href="#t-friday" fill="#f0aa12" class="gl-a"/>
+      <use href="#t-friday" fill="#ffc53d" class="gl-b"/>
+      <use href="#t-friday" fill="#ffe9a8"/>
     </g>
   </svg>
 </div>
@@ -217,7 +218,7 @@ footer .law{font-size:13px;color:var(--mute)}
   </svg>
   <div class="glitter" id="glitter" aria-hidden="true"></div>
 
-  <p class="period">ブラックフライデー期間中ずっと配布</p>
+  <p class="period"><span><b>11/19</b>(木) 20:00</span><i>〜</i><span><b>11/25</b>(水) 1:59</span></p>
   <h1><span class="fv-num">4</span><span class="fv-h"><small>Brighte 人気の</small><span>アイテムに</span><em>クーポン</em></span></h1>
   <p class="fv-lead">美顔器、ドライヤー、ストレートアイロン<br>気になっていたあのアイテムを<br>この機会に</p>
   <div class="fv-grid" id="fvGrid"></div>
@@ -245,7 +246,8 @@ footer .law{font-size:13px;color:var(--mute)}
 <aside class="rail rail-l" aria-label="キャンペーン概要">
   <img class="rail-logo" src="images/logo-w.png" alt="Brighte" width="590" height="127">
   <p class="rail-sign"><span>BLACK</span><span>FRIDAY</span></p>
-  <a class="rail-tag" href="#item1"><small>期間中ずっと配布</small><span><b>4</b>アイテムにクーポン</span></a>
+  <p class="rail-period"><b>11/19</b>(木) 20:00 〜<br><b>11/25</b>(水) 1:59</p>
+  <div class="countdown" id="countdown" aria-live="off"><small id="cdLabel">開始まで</small><p id="cdTime"></p></div>
 </aside>
 <aside class="rail rail-r" aria-label="ページ案内">
   <p class="rail-title">クーポン対象アイテム</p>
@@ -289,7 +291,6 @@ function bannerHtml(it) {
 function renderDeals() {
   document.getElementById("deals").innerHTML = ITEMS.map((it, i) => `
     <section class="deal" id="${it.id}">
-      <p class="deal-no">${pad2(i + 1)} / ${pad2(ITEMS.length)}</p>
       <p class="deal-notice">${it.cat}</p>
       <h2 class="deal-title${it.long ? " is-long" : ""}">${it.title || it.name}</h2>
       <p class="deal-kana">${it.kana}</p>
@@ -338,10 +339,39 @@ function setupNav() {
   ITEMS.forEach(it => io.observe(document.getElementById(it.id)));
 }
 
+/* カウントダウン: 開始前は「開始まで」、期間中は「終了まで」 */
+const SALE_START = Date.parse("2026-11-19T20:00:00+09:00");
+const SALE_END = Date.parse("2026-11-25T02:00:00+09:00");
+function setupCountdown() {
+  const box = document.getElementById("countdown");
+  const label = document.getElementById("cdLabel");
+  const out = document.getElementById("cdTime");
+  function tick() {
+    const now = Date.now();
+    if (now >= SALE_END) {
+      box.classList.add("is-end");
+      label.textContent = "ブラックフライデー";
+      out.textContent = "終了しました";
+      return false;
+    }
+    const before = now < SALE_START;
+    label.textContent = before ? "開始まで" : "終了まで";
+    const left = Math.floor(((before ? SALE_START : SALE_END) - now) / 1000);
+    const d = Math.floor(left / 86400), h = Math.floor(left % 86400 / 3600);
+    const m = Math.floor(left % 3600 / 60), sec = left % 60;
+    out.innerHTML = `<b>${d}</b><span>日</span><b>${pad2(h)}</b><span>時間</span><b>${pad2(m)}</b><span>分</span><b>${pad2(sec)}</b><span>秒</span>`;
+    return true;
+  }
+  if (tick()) {
+    const timer = setInterval(() => { if (!tick()) clearInterval(timer); }, 1000);
+  }
+}
+
 renderDeals();
 applyCoupons();
 setupGlitter();
 setupNav();
+setupCountdown();
 </script>
 </body>
 </html>
