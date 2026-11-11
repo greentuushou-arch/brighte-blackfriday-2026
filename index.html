@@ -53,6 +53,22 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
 @keyframes zap{0%,88%,100%{opacity:1}90%{opacity:.35}92%{opacity:1}94%{opacity:.5}96%{opacity:1}}
 @keyframes lit{0%{opacity:.18}12%{opacity:1}18%{opacity:.25}34%{opacity:1}40%{opacity:.35}52%{opacity:.9}58%{opacity:.3}70%,100%{opacity:1}}
 
+/* ── 看板の下: 4アイテムの集合写真に金のきらめきと流れ星 ─────── */
+.neon-top{padding-bottom:6px;background:var(--void)}
+.hero{position:relative;overflow:hidden;padding:0 var(--gut-r) clamp(26px,6vw,40px) var(--gut-l);background:radial-gradient(75% 48% at 50% 86%,rgba(232,178,46,.3),transparent 72%),var(--void)}
+.hero::after{content:"";position:absolute;left:16%;right:16%;bottom:4%;height:9%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,214,110,.5),transparent);filter:blur(8px);pointer-events:none}
+.hero-img{position:relative;z-index:1;width:min(90%,580px);margin:0 auto;filter:drop-shadow(0 16px 26px rgba(0,0,0,.65))}
+.fx{position:absolute;inset:0;pointer-events:none}
+.fx-back{z-index:0}
+.fx-front{z-index:2}
+.twk{position:absolute;width:var(--s);height:var(--s);margin:calc(var(--s) / -2) 0 0 calc(var(--s) / -2);opacity:0;animation:twinkle var(--d,3s) ease-in-out infinite;filter:drop-shadow(0 0 6px rgba(255,210,90,.9))}
+.twk svg{display:block;width:100%;height:100%;fill:#ffe9a8}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.2) rotate(0deg)}45%,55%{opacity:1;transform:scale(1) rotate(40deg)}}
+.meteor{position:absolute;width:clamp(90px,26vw,170px);height:2px;border-radius:2px;background:linear-gradient(90deg,#fff8de,#ffd56a 18%,rgba(232,178,46,.35) 55%,transparent);opacity:0;transform-origin:left center;animation:meteor var(--d,7s) linear infinite}
+.meteor::before{content:"";position:absolute;left:-3px;top:-3px;width:8px;height:8px;border-radius:50%;background:#fffbe9;box-shadow:0 0 10px 3px rgba(255,214,110,.9)}
+@keyframes meteor{0%{opacity:0;transform:rotate(-28deg) translateX(0)}3%{opacity:1}18%{opacity:0;transform:rotate(-28deg) translateX(-62vw)}100%{opacity:0;transform:rotate(-28deg) translateX(-62vw)}}
+@media (min-width:768px){@keyframes meteor{0%{opacity:0;transform:rotate(-28deg) translateX(0)}3%{opacity:1}18%{opacity:0;transform:rotate(-28deg) translateX(-440px)}100%{opacity:0;transform:rotate(-28deg) translateX(-440px)}}}
+
 /* ── FV: 金の光の帯と4アイテム ─────── */
 .fv{position:relative;overflow:hidden;padding:clamp(28px,7vw,48px) var(--gut-r) clamp(48px,10vw,72px) var(--gut-l);text-align:center}
 .fv>*:not(.swoosh):not(.glitter){position:relative}
@@ -205,6 +221,13 @@ footer .law{font-size:13px;color:var(--mute)}
       <use href="#t-friday" fill="url(#gd-b)"/>
     </g>
   </svg>
+</div>
+
+<!-- ▼ 看板の下: 4アイテムの集合写真 -->
+<div class="hero">
+  <div class="fx fx-back" id="fxBack" aria-hidden="true"></div>
+  <img class="hero-img" src="images/products.webp" alt="ストレートアイロン、シャワードライヤー、エレキブラシプラス、エレキリフト" width="900" height="873">
+  <div class="fx fx-front" id="fxFront" aria-hidden="true"></div>
 </div>
 
 <!-- ▼ FV -->
@@ -368,8 +391,20 @@ function setupCountdown() {
   }
 }
 
+/* 看板の下の飾り: [左%, 上%, 大きさpx, 周期s, 遅れs] */
+const TWINKLES = [[9,12,26,3.2,0],[86,8,34,3.6,.8],[22,46,18,2.8,1.4],[93,40,22,3.1,.3],[6,72,30,3.8,2],[80,74,20,2.9,1.1],[50,4,16,3.4,2.4],[66,30,14,2.6,.6],[36,86,18,3.3,1.8],[14,28,12,2.7,2.9],[96,88,16,3,1.6]];
+const METEORS = [[78,0,7,0],[102,10,8.5,2.6],[64,-4,9,5.1]];
+function setupHeroFx() {
+  const star = '<svg viewBox="-24 -24 48 48"><path d="M0-24C2-6 6-2 24 0 6 2 2 6 0 24-2 6-6 2-24 0-6-2-2-6 0-24z"/></svg>';
+  document.getElementById("fxFront").innerHTML = TWINKLES.map(([x, y, sz, d, dl]) =>
+    `<i class="twk" style="left:${x}%;top:${y}%;--s:${sz}px;--d:${d}s;animation-delay:${dl}s">${star}</i>`).join("");
+  document.getElementById("fxBack").innerHTML = METEORS.map(([x, y, d, dl]) =>
+    `<i class="meteor" style="left:${x}%;top:${y}%;--d:${d}s;animation-delay:${dl}s"></i>`).join("");
+}
+
 renderDeals();
 applyCoupons();
+setupHeroFx();
 setupGlitter();
 setupNav();
 setupCountdown();
