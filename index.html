@@ -131,6 +131,15 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
 .btn-line:hover{border-color:var(--gold);color:var(--gold)}
 .btn.is-wait{pointer-events:none}
 .deal .note{margin:16px 0 0;font-size:12.5px;color:var(--mute);letter-spacing:.06em}
+/* あわせてチェック */
+.deal.extra{background:var(--void)}
+.extra-h{margin:18px 0 0;font-size:min(8.4vw,46px);font-weight:700;line-height:1.3;letter-spacing:.08em;color:#fff}
+.banner.is-wide img{aspect-ratio:880/320}
+.option-cp{margin-top:56px;padding:30px 18px 26px;border:1px solid var(--gold);border-radius:14px;background:radial-gradient(90% 70% at 50% 0,rgba(232,178,46,.18),transparent 70%),#0f0d09}
+.option-cp .cp-k{margin:0;font:500 clamp(14px,3.8vw,17px)/1 var(--num);letter-spacing:.3em;color:var(--gold-hi)}
+.option-cp h3{margin:12px 0 0;font-size:min(8vw,40px);font-weight:700;letter-spacing:.1em;color:var(--gold);background:var(--g-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.option-items{margin:12px 0 0;font-size:clamp(15px,4.2vw,18px);line-height:1.7;letter-spacing:.06em}
+.option-cp .btns{margin-top:22px}
 
 /* ── 注意・フッター ─────── */
 .caution{padding:40px var(--gut-r) 40px var(--gut-l);border-top:1px solid var(--line)}
@@ -268,6 +277,26 @@ footer .law{font-size:13px;color:var(--mute)}
 <!-- ▼ クーポンブロック(ITEMSから生成) -->
 <div id="deals"></div>
 
+<!-- ▼ あわせてチェック: カッサ×ポインター(ポイント30%還元) と 付属品クーポン -->
+<section class="deal extra" id="extra">
+  <p class="deal-notice">あわせてチェック</p>
+  <h2 class="extra-h">カッサ × ポインター</h2>
+  <p class="deal-kana">FACE HEART POINTER</p>
+  <a class="banner is-wide" href="https://item.rakuten.co.jp/brighte-onlineshop/br-hfp405/"><img src="images/banner-cassa.jpg" alt="Brighte カッサ×ポインター ポイント30%還元 特別セット" width="880" height="320" loading="lazy"></a>
+  <div class="btns"><a class="btn btn-line" href="https://item.rakuten.co.jp/brighte-onlineshop/br-hfp405/">商品ページを見る</a></div>
+  <p class="note">※特別セットはお一人様1セット限り</p>
+
+  <div class="option-cp">
+    <p class="cp-k">COUPON</p>
+    <h3>付属品クーポン</h3>
+    <p class="option-items">ローション・ミストセラム<br>ドライヤースタンド・リフトマスク</p>
+    <div class="btns">
+      <a class="btn btn-coupon" href="https://coupon.rakuten.co.jp/getCoupon?getkey=OEc5Wi1LUEhTLUMwQU4tNVFGRw--&rt=&rd=https://www.rakuten.ne.jp/gold/brighte-onlineshop/redirect/event_option.html">付属品クーポン獲得</a>
+      <a class="btn btn-line" href="https://www.rakuten.ne.jp/gold/brighte-onlineshop/redirect/event_option.html">対象の付属品を見る</a>
+    </div>
+  </div>
+</section>
+
 <section class="caution">
   <h2>ご注意</h2>
   <ul>
@@ -306,14 +335,14 @@ const ITEMS = [
    img:"lift.webp", banner:"coupon-lift.jpg", note:"※特別セットはお一人様1セット限り",
    off:"38,054", cpText:"38,054円OFFクーポン獲得", coupon:"https://coupon.rakuten.co.jp/getCoupon?getkey=Q0RRTC1JWk45LUxKQzYtRktIQQ--&rt=&rd=https://item.rakuten.co.jp/brighte-onlineshop/brt-fl170/", url:"https://item.rakuten.co.jp/brighte-onlineshop/brt-fl170/"},
   {id:"item2", cat:"ブラシ型美顔器", name:"ELEKI BRUSH＋", title:"ELEKI <span class=\"nw\">BRUSH＋</span>", kana:"エレキブラシプラス", tab:"ELEKI<br>BRUSH＋",
-   img:"brush.webp", banner:null, note:"",
-   off:"8,634", cpText:"8,634円OFFクーポン獲得", coupon:"#", url:"https://item.rakuten.co.jp/brighte-onlineshop/brt-fs145/"},
+   img:"brush.webp", banner:"coupon-brush.jpg", note:"※特別セットはお一人様1セット限り",
+   off:"8,634", cpText:"8,634円OFFクーポン獲得", coupon:"https://coupon.rakuten.co.jp/getCoupon?getkey=RVoxWS0wTUYzLVZaWlctNDE4OQ--&rt=&rd=https://item.rakuten.co.jp/brighte-onlineshop/brt-fs145/", url:"https://item.rakuten.co.jp/brighte-onlineshop/brt-fs145/"},
   {id:"item3", cat:"ドライヤー", name:"SHOWER DRYER", kana:"シャワードライヤー", tab:"SHOWER<br>DRYER",
-   img:"dryer.webp", banner:null, note:"",
-   off:"7,718", cpText:"7,718円OFFクーポン獲得", coupon:"#", url:"https://item.rakuten.co.jp/brighte-onlineshop/brt-sd173/"},
+   img:"dryer.webp", banner:"coupon-dryer.jpg", note:"※特別セットはお一人様1セット限り",
+   off:"7,718", cpText:"7,718円OFFクーポン獲得", coupon:"https://coupon.rakuten.co.jp/getCoupon?getkey=SFpNRS04MVFMLVdZUUItNFhLWA--&rt=&rd=https://item.rakuten.co.jp/brighte-onlineshop/brt-sd173/", url:"https://item.rakuten.co.jp/brighte-onlineshop/brt-sd173/"},
   {id:"item4", cat:"ストレートアイロン", name:"3D SILK STRAIGHT IRON", long:true, kana:"3D シルクストレートアイロン", tab:"3D SILK<br>IRON",
-   img:"iron.webp", banner:null, note:"",
-   off:"3,819", cpText:"3,819円OFFクーポン獲得", coupon:"#", url:"https://item.rakuten.co.jp/brighte-onlineshop/brt-3d138/"}
+   img:"iron.webp", banner:"coupon-iron.jpg", note:"※特別セットはお一人様1セット限り",
+   off:"3,819", cpText:"3,819円OFFクーポン獲得", coupon:"https://coupon.rakuten.co.jp/getCoupon?getkey=U1dOUi1DOVZDLVdTREktRjNWWg--&rt=&rd=https://item.rakuten.co.jp/brighte-onlineshop/brt-3d138/", url:"https://item.rakuten.co.jp/brighte-onlineshop/brt-3d138/"}
 ];
 /* ▲ 編集箇所 ─────────────────────────── */
 
@@ -345,9 +374,10 @@ function renderDeals() {
 
   document.getElementById("fvGrid").innerHTML = ITEMS.map(it =>
     `<a href="#${it.id}"><img src="images/${it.img}" alt="${it.name} ${it.kana}" width="1000" height="1000"></a>`).join("");
-  document.getElementById("railNav").innerHTML = ITEMS.map((it, i) =>
+  const EXTRA = {id:"extra", name:"あわせてチェック", cat:"カッサ×ポインター・付属品クーポン", tab:"あわせて<br>チェック"};
+  document.getElementById("railNav").innerHTML = [...ITEMS, EXTRA].map((it, i) =>
     `<li><a href="#${it.id}" data-nav="${it.id}"><span><b>${it.name}</b><small>${it.cat}</small></span><em>${i + 1}</em></a></li>`).join("");
-  document.getElementById("tabbar").innerHTML = ITEMS.map(it =>
+  document.getElementById("tabbar").innerHTML = [...ITEMS, EXTRA].map(it =>
     `<a href="#${it.id}" data-nav="${it.id}">${it.tab}</a>`).join("");
 }
 
@@ -377,7 +407,7 @@ function setupNav() {
       links.forEach(a => a.classList.toggle("is-here", a.dataset.nav === e.target.id));
     });
   }, {rootMargin: "-45% 0px -50% 0px"});
-  ITEMS.forEach(it => io.observe(document.getElementById(it.id)));
+  [...ITEMS.map(it => it.id), "extra"].forEach(id => io.observe(document.getElementById(id)));
 }
 
 /* カウントダウン: 開始前は「開始まで」、期間中は「終了まで」 */
